@@ -8,5 +8,6 @@
         "-DGDB_CLIENT_BIN_PATH=/usr/bin/arm-none-eabi-gdb"
     ],
     "cmake.generator": "Unix Makefiles",
-    "clang-tidy.buildPath": "build/compile_commands.json"
+    "clang-tidy.buildPath": "build/compile_commands.json",
+    "editor.tabSize": 2
 }

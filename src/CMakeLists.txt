@@ -396,6 +396,7 @@ list(APPEND SOURCE_FILES
         displayapp/screens/InfiniPaint.cpp
         displayapp/screens/Paddle.cpp
         displayapp/screens/StopWatch.cpp
+        displayapp/screens/PrintWatch.cpp
         displayapp/screens/BatteryIcon.cpp
         displayapp/screens/BleIcon.cpp
         displayapp/screens/NotificationIcon.cpp
@@ -589,6 +590,7 @@ set(INCLUDE_FILES
         displayapp/screens/Meter.h
         displayapp/screens/InfiniPaint.h
         displayapp/screens/StopWatch.h
+        displayapp/screens/PrintWatch.h
         displayapp/screens/Paddle.h
         displayapp/screens/DropDownDemo.h
         displayapp/screens/BatteryIcon.h
