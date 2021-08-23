@@ -9,12 +9,42 @@ PrintWatch::PrintWatch(DisplayApp* app, System::SystemTask& systemTask)
   bedTemp = 60;
   hostName = "fluiddpi";
 
+  // Create the host ui part
+  hostLabel = lv_label_create(lv_scr_act(), nullptr);
+  lv_label_set_text(hostLabel, hostName);
+  lv_obj_align(hostLabel, nullptr, LV_ALIGN_IN_TOP_MID, 0, 0);
+  
   // Create the extruder ui part
-  extruderValueLabel = lv_label_create(lv_scr_act(), nullptr);
-  lv_obj_set_style_local_text_font(extruderValueLabel, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &jetbrains_mono_42);
-  lv_label_set_text_fmt(extruderValueLabel, "E1: %d°", extruderTemp);
-  lv_label_set_align(extruderValueLabel, LV_LABEL_ALIGN_LEFT);
-  lv_obj_align(extruderValueLabel, nullptr, LV_ALIGN_CENTER, -20, -75);
+  extruderArc = lv_arc_create(lv_scr_act(), nullptr);
+  lv_arc_set_bg_angles(extruderArc, 0, 270);
+  lv_arc_set_rotation(extruderArc, 135);
+  lv_arc_set_range(extruderArc, 10, 300);
+  lv_arc_set_value(extruderArc, extruderTemp);
+  lv_obj_set_size(extruderArc, 105, 105);
+  lv_arc_set_adjustable(extruderArc, true);
+  lv_obj_align(extruderArc, hostLabel, LV_ALIGN_OUT_BOTTOM_MID, -60, 0);
+  extruderValueLabel = lv_label_create(extruderArc, nullptr);
+  lv_label_set_text_fmt(extruderValueLabel, "%d", extruderTemp);
+  lv_obj_align(extruderValueLabel, extruderArc, LV_ALIGN_CENTER, 0, 0);
+  extruderLabel = lv_label_create(extruderArc, nullptr);
+  lv_label_set_text(extruderLabel, "E1");
+  lv_obj_align(extruderLabel, nullptr, LV_ALIGN_CENTER, 0, 30);
+
+  // Create the bed ui part
+  bedArc = lv_arc_create(lv_scr_act(), nullptr);
+  lv_arc_set_bg_angles(bedArc, 0, 270);
+  lv_arc_set_rotation(bedArc, 135);
+  lv_arc_set_range(bedArc, 10, 300);
+  lv_arc_set_value(bedArc, bedTemp);
+  lv_obj_set_size(bedArc, 105, 105);
+  lv_arc_set_adjustable(bedArc, true);
+  lv_obj_align(bedArc, hostLabel, LV_ALIGN_OUT_BOTTOM_MID, 60, 0);
+  bedValueLabel = lv_label_create(bedArc, nullptr);
+  lv_label_set_text_fmt(bedValueLabel, "%d", bedTemp);
+  lv_obj_align(bedValueLabel, bedArc, LV_ALIGN_CENTER, 0, 0);
+  bedLabel = lv_label_create(bedArc, nullptr);
+  lv_label_set_text(bedLabel, "Bed");
+  lv_obj_align(bedLabel, nullptr, LV_ALIGN_CENTER, 0, 30);
 
   // Create the duration ui part
   durationBar = lv_bar_create(lv_scr_act(), nullptr);
