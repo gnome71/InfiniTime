@@ -5,10 +5,11 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/src/**",
-                "${workspaceFolder}/src"
+                "${workspaceFolder}/src",
+                "${env:NRF5_SDK_PATH}/modules/nrfx/hal"
             ],
             "defines": [],
-            "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "compilerPath": "${env:ARM_NONE_EABI_TOOLCHAIN_PATH}/arm-none-eabi-gcc",
             "cStandard": "c11",
             "cppStandard": "c++14",
             "intelliSenseMode": "gcc-arm",
