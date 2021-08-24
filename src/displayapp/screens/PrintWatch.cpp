@@ -1,17 +1,19 @@
 #include "PrintWatch.h"
+#include "../DisplayApp.h"
+#include "components/ble/PrintWatchService.h"
 
 using namespace Pinetime::Applications::Screens;
 
-PrintWatch::PrintWatch(DisplayApp* app, System::SystemTask& systemTask)
-  : Screen(app), systemTask {systemTask} {
+PrintWatch::PrintWatch(DisplayApp* app, Controllers::PrintWatchService& printwatch)
+  : Screen(app), printwatchService(printwatch) {
 
-  extruderTemp = 215;
-  bedTemp = 60;
-  hostName = "fluiddpi";
+  extruderTemp = "1"; //printwatchService.getExtruderTemp();
+  bedTemp = "2";      //printwatchService.getBedTemp();
+  hostName = "3";     //printwatchService.getHost();
 
   // Create the host ui part
   hostLabel = lv_label_create(lv_scr_act(), nullptr);
-  lv_label_set_text(hostLabel, hostName);
+  lv_label_set_text(hostLabel, hostName.c_str());
   lv_obj_align(hostLabel, nullptr, LV_ALIGN_IN_TOP_MID, 0, 0);
   
   // Create the extruder ui part
@@ -19,7 +21,7 @@ PrintWatch::PrintWatch(DisplayApp* app, System::SystemTask& systemTask)
   lv_arc_set_bg_angles(extruderArc, 0, 270);
   lv_arc_set_rotation(extruderArc, 135);
   lv_arc_set_range(extruderArc, 10, 300);
-  lv_arc_set_value(extruderArc, extruderTemp);
+  lv_arc_set_value(extruderArc, std::stoi(extruderTemp));
   lv_obj_set_size(extruderArc, 105, 105);
   lv_arc_set_adjustable(extruderArc, true);
   lv_obj_align(extruderArc, hostLabel, LV_ALIGN_OUT_BOTTOM_MID, -60, 0);
@@ -35,7 +37,7 @@ PrintWatch::PrintWatch(DisplayApp* app, System::SystemTask& systemTask)
   lv_arc_set_bg_angles(bedArc, 0, 270);
   lv_arc_set_rotation(bedArc, 135);
   lv_arc_set_range(bedArc, 10, 300);
-  lv_arc_set_value(bedArc, bedTemp);
+  lv_arc_set_value(bedArc, std::stoi(bedTemp));
   lv_obj_set_size(bedArc, 105, 105);
   lv_arc_set_adjustable(bedArc, true);
   lv_obj_align(bedArc, hostLabel, LV_ALIGN_OUT_BOTTOM_MID, 60, 0);
@@ -62,7 +64,6 @@ PrintWatch::PrintWatch(DisplayApp* app, System::SystemTask& systemTask)
 
 PrintWatch::~PrintWatch() {
   app->SetTouchMode(DisplayApp::TouchModes::Gestures);
-  systemTask.PushMessage(System::Messages::EnableSleeping);
   lv_obj_clean(lv_scr_act());
 }
 

@@ -12,7 +12,7 @@ namespace {
 
   // 00000000-78fc-48fe-8e23-433b3a1942d0
   constexpr ble_uuid128_t BaseUuid() {
-    return CharUuid(0x00, 0x00);
+    return CharUuid(0x02, 0x00);
   }
 
   constexpr ble_uuid128_t pwsUuid {BaseUuid()};

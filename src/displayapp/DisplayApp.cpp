@@ -396,7 +396,7 @@ void DisplayApp::LoadApp(Apps app, DisplayApp::FullRefreshDirections direction) 
       currentScreen = std::make_unique<Screens::StopWatch>(this, *systemTask);
       break;
     case Apps::PrintWatch:
-      currentScreen = std::make_unique<Screens::PrintWatch>(this, *systemTask);
+      currentScreen = std::make_unique<Screens::PrintWatch>(this, systemTask->nimble().printwatch());
       break;
     case Apps::Twos:
       currentScreen = std::make_unique<Screens::Twos>(this);

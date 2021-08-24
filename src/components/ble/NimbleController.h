@@ -19,6 +19,7 @@
 #include "NavigationService.h"
 #include "ServiceDiscovery.h"
 #include "HeartRateService.h"
+#include "PrintWatchService.h"
 
 namespace Pinetime {
   namespace Drivers {
@@ -65,6 +66,9 @@ namespace Pinetime {
       Pinetime::Controllers::NavigationService& navigation() {
         return navService;
       };
+      Pinetime::Controllers::PrintWatchService& printwatch() {
+        return printWatchService;
+      };
       Pinetime::Controllers::AlertNotificationService& alertService() {
         return anService;
       };
@@ -91,6 +95,7 @@ namespace Pinetime {
       BatteryInformationService batteryInformationService;
       ImmediateAlertService immediateAlertService;
       HeartRateService heartRateService;
+      PrintWatchService printWatchService;
 
       uint8_t addrType; // 1 = Random, 0 = PUBLIC
       uint16_t connectionHandle = BLE_HS_CONN_HANDLE_NONE;
