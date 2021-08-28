@@ -44,7 +44,7 @@ namespace Pinetime {
       struct ble_gatt_chr_def characteristicDefinition[5];
       struct ble_gatt_svc_def serviceDefinition[2];
 
-      std::string hostname {"None"};
+      std::string hostname {"Host"};
       std::string extruderTemp {"0"};
       std::string bedTemp {"0"};
       std::string duration {"0"};

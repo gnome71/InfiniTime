@@ -24,7 +24,7 @@ namespace Pinetime {
           lv_obj_t *extruderArc, *extruderValueLabel, *extruderLabel; 
           lv_obj_t *bedArc, *bedValueLabel, *bedLabel;
           lv_obj_t *hostLabel;
-          lv_obj_t *etaLabel, *etaValueLabel;
+          //lv_obj_t *etaLabel, *etaValueLabel;
           lv_obj_t *durationBar;
   
           Pinetime::Controllers::PrintWatchService& printwatchService;

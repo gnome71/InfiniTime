@@ -4,7 +4,7 @@
         {
             "name": "Debug - Openocd docker Remote",
             "type":"cortex-debug",
-            "cortex-debug.armToolchainPath":"${env:ARM_NONE_EABI_TOOLCHAIN_PATH}/bin",
+            "cortex-debug.armToolchainPath":"${env:ARM_NONE_EABI_TOOLCHAIN_PATH}",
             "cwd": "${workspaceRoot}",
             "executable": "${command:cmake.launchTargetPath}",
             "request": "launch",
@@ -24,7 +24,7 @@
         {
             "name": "Debug - Openocd Local",
             "type":"cortex-debug",
-            "cortex-debug.armToolchainPath":"${env:ARM_NONE_EABI_TOOLCHAIN_PATH}/bin",
+            "cortex-debug.armToolchainPath":"${env:ARM_NONE_EABI_TOOLCHAIN_PATH}",
             "cwd": "${workspaceRoot}",
             "executable": "${command:cmake.launchTargetPath}",
             "request": "launch",
@@ -56,7 +56,7 @@
             "servertype": "openocd",
             "runToMain": true,
             // Only use armToolchainPath if your arm-none-eabi-gdb is not in your path (some GCC packages does not contain arm-none-eabi-gdb)
-            "armToolchainPath": "/usr/bin",
+            //"armToolchainPath": "${env:ARM_NONE_EABI_TOOLCHAIN_PATH}",
             "svdFile": "${workspaceRoot}/nrf52.svd",
             "configFiles": [
               "interface/stlink.cfg",
